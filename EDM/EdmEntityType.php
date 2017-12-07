@@ -9,7 +9,6 @@
 namespace OData\EDM;
 
 
-class EdmEntityType
+class EdmEntityType extends EdmAbstractElement
 {
-
 }

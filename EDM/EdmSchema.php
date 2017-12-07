@@ -59,12 +59,12 @@ class EdmSchema
     public function setAlias($alias)
     {
         if (in_array($alias, OData::getReservedValues())) {
-            throw new EdmException("'" . $alias . "' is reserved word");
+            throw new EdmException("Can't set alias, word '" . $alias . "' is reserved");
         }
         $this->alias = $alias;
     }
 
-    public function addElement()
+    public function addElement(EdmAbstractElement $element)
     {
 
     }

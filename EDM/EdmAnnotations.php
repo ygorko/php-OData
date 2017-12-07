@@ -9,7 +9,6 @@
 namespace OData\EDM;
 
 
-class EdmAnnotations
+class EdmAnnotations extends EdmAbstractElement
 {
-
 }

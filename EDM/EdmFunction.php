@@ -9,7 +9,7 @@
 namespace OData\EDM;
 
 
-class EdmFunction
+class EdmFunction extends EdmAbstractElement
 {
 
 }
