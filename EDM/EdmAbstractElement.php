@@ -9,7 +9,7 @@ class EdmAbstractElement
     /**
      * @var string
      */
-    protected $edmType;
+    private $edmType;
 
     /**
      * @return string
@@ -44,7 +44,7 @@ class EdmAbstractElement
     {
         if (is_null($this->edmType)) {
             $reflect = new ReflectionClass($this);
-            $this->edmType = "Edm." . substr($reflect->getShortName(), 3);
+            $this->edmType = substr($reflect->getShortName(), 3);
         }
     }
 }

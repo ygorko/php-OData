@@ -15,6 +15,19 @@ class EdmSchema
 {
     private $elements = array();
 
+    private static $availableElementTypes = [
+        "Action",
+        "Annotations",
+        "Annotation",
+        "ComplexType",
+        "EntityContainer",
+        "EntityType",
+        "EnumType",
+        "Function",
+        "Term",
+        "TypeDefinition"
+    ];
+
     private $namespace;
     private $alias;
 
@@ -66,6 +79,23 @@ class EdmSchema
 
     public function addElement(EdmAbstractElement $element)
     {
+        if(!is_null($this->elements[$element->getName()])) {
+            throw new EdmException("Element with name '{$element->getName()}' already exists");
+        }
+        $this->elements[$element->getName()] = $element;
+        $this->elements[$element->getEdmType()][] = $element;
+    }
 
+    public function __call($name) {
+        $firstPart = substr($name, 0, 3);
+        $secondPart = substr($name, 3);
+
+        if ($firstPart != "get" || !in_array($secondPart, self::$availableElementTypes)) return;
+
+        return $this->elements[$secondPart];
+    }
+
+    public static function getAvailableElementTypes() {
+        return self::$availableElementTypes;
     }
 }
