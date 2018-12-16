@@ -10,9 +10,7 @@ namespace OData;
 
 class OData
 {
-    private static $reservedValues = array("Edm", "odata", "System", "Transient");
-
-    public static function getReservedValues() {
-        return self::$reservedValues;
-    }
+    const RESERVED_KEYWORDS = array("Edm", "odata", "System", "Transient");
+    const EDM_NAMESPACE = "http://docs.oasis-open.org/odata/ns/edm";
+    const EDMX_NAMESPACE = "http://docs.oasis-open.org/odata/ns/edmx";
 }

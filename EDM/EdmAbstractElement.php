@@ -43,7 +43,7 @@ class EdmAbstractElement
     public function __construct()
     {
         if (is_null($this->edmType)) {
-            $reflect = new ReflectionClass($this);
+            $reflect = new \ReflectionClass($this);
             $this->edmType = substr($reflect->getShortName(), 3);
         }
     }

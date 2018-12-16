@@ -51,7 +51,7 @@ class EdmSchema
      */
     public function setNamespace($namespace)
     {
-        if (in_array($namespace, OData::getReservedValues())) {
+        if (in_array($namespace, OData::RESERVED_KEYWORDS)) {
             throw new EdmException("'" . $namespace . "' is reserved word");
         }
         $this->namespace = $namespace;
@@ -71,7 +71,7 @@ class EdmSchema
      */
     public function setAlias($alias)
     {
-        if (in_array($alias, OData::getReservedValues())) {
+        if (in_array($alias, OData::RESERVED_KEYWORDS)) {
             throw new EdmException("Can't set alias, word '" . $alias . "' is reserved");
         }
         $this->alias = $alias;
