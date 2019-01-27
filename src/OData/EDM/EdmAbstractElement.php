@@ -14,7 +14,7 @@ class EdmAbstractElement
     /**
      * @return string
      */
-    public function getEdmType()
+    public function getType()
     {
         return $this->edmType;
     }
@@ -40,8 +40,14 @@ class EdmAbstractElement
         $this->name = $name;
     }
 
-    public function __construct()
+    public function __construct(string $name = null, string $type = null)
     {
+        if (!is_null($name)) {
+            $this->name = $name;
+        }
+        if (!is_null($type)) {
+            $this->edmType = $type;
+        }
         if (is_null($this->edmType)) {
             $reflect = new \ReflectionClass($this);
             $this->edmType = substr($reflect->getShortName(), 3);

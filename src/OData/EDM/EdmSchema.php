@@ -28,17 +28,24 @@ class EdmSchema
         "TypeDefinition"
     ];
 
+    /**
+     * @var string
+     */
     private $namespace;
+
+    /**
+     * @var string
+     */
     private $alias;
 
-    public function __construct($namespace, $alias = null)
+    public function __construct($namespace, $alias = "")
     {
         $this->namespace = $namespace;
         $this->alias = $alias;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getNamespace()
     {
@@ -79,14 +86,13 @@ class EdmSchema
 
     public function addElement(EdmAbstractElement $element)
     {
-        if(!is_null($this->elements[$element->getName()])) {
+        if(isset($this->elements[$element->getName()])) {
             throw new EdmException("Element with name '{$element->getName()}' already exists");
         }
-        $this->elements[$element->getName()] = $element;
-        $this->elements[$element->getEdmType()][] = $element;
+        $this->elements[] = $element;
     }
 
-    public function __call($name) {
+    public function __call($name, $args) {
         $firstPart = substr($name, 0, 3);
         $secondPart = substr($name, 3);
 
@@ -97,5 +103,9 @@ class EdmSchema
 
     public static function getAvailableElementTypes() {
         return self::$availableElementTypes;
+    }
+
+    public function getElements(){
+        return $this->elements;
     }
 }
